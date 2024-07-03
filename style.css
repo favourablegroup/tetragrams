@@ -100,7 +100,7 @@ button {
     overflow-y: auto; /* Enable vertical scrolling */
     overflow-x: hidden; /* Hide horizontal scrollbar */
     box-sizing: border-box;
-    max-height: 88%;
+    max-height: 86%;
 }
 
 .command-line {

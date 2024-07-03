@@ -101,6 +101,7 @@ function displayHelp() {
 }
 
 function displayMessagesSequentially(messages) {
+    const terminalContent = document.getElementById('terminal-content');
     let messageDisplayArea = document.getElementById('message-display-area') || createElementAndAppend('div', 'message-display-area', 'terminal-content');
     messageDisplayArea.innerHTML = ''; // Clear existing messages
 
@@ -109,8 +110,6 @@ function displayMessagesSequentially(messages) {
             const p = document.createElement('p');
             p.textContent = msg;
             messageDisplayArea.appendChild(p);
-
-            // Scroll to the bottom after adding each message
             scrollToBottomSmooth(terminalContent);
         }, index * 300); // Adjust timing as needed
     });
