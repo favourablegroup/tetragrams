@@ -97,7 +97,10 @@ button {
     color: lime; /* Optional: Adjust the text color as needed */
     font-family: 'Orbitron', sans-serif; /* Ensures the font matches the terminal theme */
     font-size: 18px; /* Adjust the font size as needed */
-    overflow-y: auto; /* Enables vertical scrolling if content exceeds the window height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    box-sizing: border-box;
+    max-height: 88%;
 }
 
 .command-line {
@@ -166,4 +169,29 @@ pre, body {
 pre, .cmd {
   line-height: 14px;
   font-size: 12px;
+}
+
+/* WebKit-based browsers */
+#terminal-content::-webkit-scrollbar {
+  width: 12px;
+}
+
+#terminal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#terminal-content::-webkit-scrollbar-thumb {
+  background: lime;
+  border-radius: 20px;
+  border: 3px solid transparent;
+}
+
+#terminal-content::-webkit-scrollbar-thumb:hover {
+  background: darklimegreen;
+}
+
+/* Firefox */
+#terminal-content {
+  scrollbar-width: thin;
+  scrollbar-color: lime transparent;
 }

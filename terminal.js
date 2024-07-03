@@ -40,26 +40,106 @@ const messages = [
     "-----------------------------------",
 ];
 
+const help = [
+    "Help sequence initialized...",
+    "Error: Help augmentation quantum wave function collapse exception...",
+    "Note: Contact Galactic Federation Intergalactic Helpline For Assistance",
+    "...",
+    "Welcome to TetraTerminal v1.0.0",
+    "-----------------------------------",
+    "Current Date: July 2, 2024",
+    "System Status: Operational",
+    "User: Favourable Group",
+    "Type 'help' for a list of commands.",
+    "-----------------------------------",
+];
+
 let messageTimeouts = []; // Store references to timeouts
 
-function displayMessagesSequentially(messages) {
-    let messageDisplayArea = document.getElementById('message-display-area');
-
-    if (!messageDisplayArea) {
-        messageDisplayArea = document.createElement('div');
-        messageDisplayArea.id = 'message-display-area';
-        document.getElementById('terminal-content').appendChild(messageDisplayArea);
+    function createElementAndAppend(tagName, id, parentID) {
+        const element = document.createElement(tagName);
+        element.id = id;
+        document.getElementById(parentID).appendChild(element);
+        return element;
     }
 
+        // Other initializations...
+
+    // Setup event listeners
+    const commandInput = document.getElementById('command-input');
+    if (commandInput) {
+        commandInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                const command = this.value.trim();
+                handleCommand(command);
+                this.value = '';
+            }
+        });
+    }
+
+let messageDisplayArea = createElementAndAppend('div', 'message-display-area', 'terminal-content');
+
+function displayHelp() {
+    const terminalContent = document.getElementById('terminal-content');
+    if (terminalContent) {
+        const messageDisplayArea = createElementAndAppend('div', 'message-display-area', 'terminal-content'); // Correct usage
+        messageDisplayArea.innerHTML = '';
+        help.forEach((msg, index) => {
+            setTimeout(() => {
+                const p = document.createElement('p');
+                p.textContent = msg;
+                messageDisplayArea.appendChild(p);
+                scrollToBottomSmooth(terminalContent);
+            }, index * 300); // Adjust timing as needed
+        });
+
+        const commandInput = document.getElementById('command-input');
+        if (commandInput) {
+            commandInput.focus(); // Ensure exists before focusing
+        }
+    }
+}
+
+function displayMessagesSequentially(messages) {
+    let messageDisplayArea = document.getElementById('message-display-area') || createElementAndAppend('div', 'message-display-area', 'terminal-content');
     messageDisplayArea.innerHTML = ''; // Clear existing messages
+
     messages.forEach((msg, index) => {
-        messageTimeouts[index] = setTimeout(() => { // Store timeout reference
+        setTimeout(() => {
             const p = document.createElement('p');
             p.textContent = msg;
             messageDisplayArea.appendChild(p);
-        }, index * 300); // Adjusted for demonstration
+
+            // Scroll to the bottom after adding each message
+            scrollToBottomSmooth(terminalContent);
+        }, index * 300); // Adjust timing as needed
     });
 }
+
+function scrollToBottomSmooth(container) {
+    container.scrollTo({
+        top: container.scrollHeight,
+        behavior: 'smooth'
+    });
+}
+
+function handleCommand(command) {
+    switch (command.toLowerCase()) {
+        case 'help':
+            displayHelp();
+            break;
+        default:
+            console.log('Unknown command. Type "help" for a list of commands.');
+    }
+}
+
+document.getElementById('command-input').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        const command = this.value.trim(); // Get the trimmed command text
+        handleCommand(command); // Handle the command
+        this.value = ''; // Clear the input field after execution
+    }
+});
 
 function clearMessageTimeouts() {
     messageTimeouts.forEach(timeout => clearTimeout(timeout));
