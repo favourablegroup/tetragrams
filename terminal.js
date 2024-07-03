@@ -43,36 +43,6 @@ const messages = [
     "Type 'help' for a list of commands.",
     "-----------------------------------",
 ];
-
-const help = [
-    "-----------------------------------",
-    "Welcome to the Advanced Terminal Interface.",
-    "-----------------------------------",
-    "Available Commands:",
-    "status - Check system status. Ping favourable.group for operational insights.",
-    "reboot - Reboot the system. Refreshes the page for a clean slate.",
-    "update - Update system packages. Interprets federation directives for enhancements.",
-    "network - Diagnose network connections. Trying to be a good and genuine person.",
-    "exit - Close the terminal. Ends the session.",
-    "clear - Clear the terminal screen. Start fresh.",
-    "history - Show command history. Recall previous entries.",
-    "help - Display this help menu. Find guidance anytime."
-];
-
-const status = [
-    "Core Temporal Modules: Active",
-    "Ternary Logic Processor: Active",
-    "Fractal Investment Algorithms: Active",
-    "Synchronization with Cosmic Trinity: Uptime 100%"
-];
-
-const network = [
-    { name: "x.com", contact: "@fractalfinances" },
-    { name: "Fractal Investments", contact: "fractal.investments" },
-    { name: "Speculative Investments", contact: "speculative.investments" },
-    { name: "Favourable Group", contact: "favourable.group" }
-];
-
     
 // Other initializations...
 
@@ -85,6 +55,7 @@ document.getElementById('command-input').addEventListener('keypress', function(e
 });
 
 // Setup event listeners
+
 const commandInput = document.getElementById('command-input');
 if (commandInput) {
     commandInput.addEventListener('keypress', function(event) {
@@ -150,6 +121,14 @@ function handleCommand(command) {
 function displayStatus() {
     const terminalContent = document.getElementById('terminal-content');
     const messageDisplayArea = document.querySelector('message-display-area') || createElementAndAppend('div', 'message-display-area', 'terminal-content');
+    const status = [
+        "-----------------------------------",
+        "Core Temporal Modules: Active",
+        "Ternary Logic Processor: Active",
+        "Fractal Investment Algorithms: Active",
+        "Synchronization with Cosmic Trinity: Uptime 100%",
+        "-----------------------------------"
+    ];
     messageDisplayArea.innerHTML = ''; // Clear existing content for fresh display
     status.forEach((msg, index) => {
         setTimeout(() => {
@@ -164,6 +143,12 @@ function displayStatus() {
 function displayNetworkInfo() {
     const terminalContent = document.getElementById('terminal-content');
     const messageDisplayArea = document.querySelector('message-display-area') || createElementAndAppend('div', 'message-display-area', 'terminal-content');
+    const network = [
+        { name: "x.com", contact: "@fractalfinances" },
+        { name: "Fractal Investments", contact: "fractal.investments" },
+        { name: "Speculative Investments", contact: "speculative.investments" },
+        { name: "Favourable Group", contact: "favourable.group" },
+    ];
     messageDisplayArea.innerHTML = ''; // Clear existing content for fresh display
     network.forEach(({ name, contact }, index) => {
         setTimeout(() => {
@@ -202,6 +187,20 @@ function displayHelp() {
     const terminalContent = document.getElementById('terminal-content');
     if (terminalContent) {
         const messageDisplayArea = createElementAndAppend('div', 'message-display-area', 'terminal-content'); // Correct usage
+        const help = [
+            "-----------------------------------",
+            "Welcome to the Advanced Terminal Interface.",
+            "-----------------------------------",
+            "Available Commands:",
+            "status - Check system status. Ping favourable.group for operational insights.",
+            "reboot - Reboot the system. Refreshes the page for a clean slate.",
+            "update - Update system packages. Interprets federation directives for enhancements.",
+            "network - Diagnose network connections. Trying to be a good and genuine person.",
+            "exit - Close the terminal. Ends the session.",
+            "clear - Clear the terminal screen. Start fresh.",
+            "history - Show command history. Recall previous entries.",
+            "help - Display this help menu. Find guidance anytime."
+        ];
         messageDisplayArea.innerHTML = '';
         help.forEach((msg, index) => {
             setTimeout(() => {
@@ -302,7 +301,7 @@ function displayTerminalContent() {
 
 function checkPassword() {
     const passwordInput = document.getElementById('mock-password').value.trim().toLowerCase();
-    if (passwordInput === "123") {
+    if (passwordInput === "gratitude") {
         document.getElementById('password-section').style.display = 'none';
         document.getElementById('terminal-wrapper').classList.remove('hidden');
         displayTerminalContent(); // This should now respect messagesDisplayed flag
@@ -330,12 +329,7 @@ document.getElementById('command-input').addEventListener('blur', function() {
 }, true);
 
 function closeTerminal() {
-    document.getElementById('terminal-wrapper').classList.add('hidden');
-    document.getElementById('password-section').style.display = '';
-    document.getElementById('mock-password').value = '';
-    document.getElementById('terminal-content').innerHTML = '';
-    messagesDisplayed = false; // Reset to allow messages on reopen
-    clearMessageTimeouts(); // Prevent leftover messages
+    location.reload();
 }
 
 function reopenTerminal() {
