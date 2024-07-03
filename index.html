@@ -1,15 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
+    <title>TetraTerminal</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
-  </head>
-  <body id="body">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+</head>
+<body id="body">
+
+<div id="main-content">
     <div id="container">
-      <canvas id="matrix"></canvas>
-      <script src="matrix.js"></script>
-      <h1 id="text"></h1>
-      <!-- IDEA: Add support for different colors w/ span! -->
+        <canvas id="matrix"></canvas>
+        <script src="matrix.js"></script>
+        <h1 id="text"></h1>
     </div>
-  </body>
+
+    <!-- Separate Password Input Section -->
+    <div id="password-section">
+        <input type="password" id="mock-password" placeholder="Enter password..." onkeypress="handleKeyPress(event)">
+        <button onclick="checkPassword()" style="display: inline-block;">CONNECT</button>
+    </div>
+
+    <!-- Terminal Wrapper -->
+    <div id="terminal-wrapper" class="hidden">
+        <div class="terminal-window">
+            <div class="top-bar">
+                <span class="title">TetraTerminal 𝌆 𝌮 𝍖</span>
+                <button onclick="closeTerminal()" class="close-button">X</button>
+            </div>
+            <div id="terminal-content" class="terminal-content">
+            <div class="command-line">
+              <input type="text" id="command-input" placeholder="Type a command...">
+          </div>
+          </div>
+        </div>
+</div>
+
+<script src="matrix.js"></script>
+<script src="terminal.js"></script>
+</body>
 </html>
