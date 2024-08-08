@@ -37,10 +37,8 @@ const messages = [
     "...",
     "Welcome to TetraTerminal v1.0.0",
     "-----------------------------------",
-    "Current Date: July 4, 2024",
-    "Happy Independence Day!!!",
     "System Status: Operational",
-    "User: Favourable Group",
+    "User: Federation Delegate",
     "Type 'help' for a list of commands.",
     "-----------------------------------",
 ];
