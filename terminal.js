@@ -251,7 +251,7 @@ function displayUpdate() {
         "which constitutes memory.",
         "----------------------------------------------",
         "Conciousness Synchronization Complete",
-        "Here is the key to unlock key insights:",
+        "This password will unlock key insights:",
         "10_4_extragalactic_fractal_force_one_inbound",
         "----------------------------------------------",
     ];
